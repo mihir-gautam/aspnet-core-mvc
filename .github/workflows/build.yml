@@ -44,6 +44,8 @@ jobs:
       with:
         name: MyProject-${{ github.sha }}
         path: ./Webgentle.BookStore/publish
+    environment:
+      name: 'production'
     
 #     - name: Configure AWS Credentials
 #       uses: aws-actions/configure-aws-credentials@v1
