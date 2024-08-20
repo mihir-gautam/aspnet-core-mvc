@@ -44,6 +44,30 @@ jobs:
       with:
         name: MyProject-${{ github.sha }}
         path: ./Webgentle.BookStore/publish
+  build-and-deploy-2:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+    - name: Restore dependencies
+      working-directory: ./Webgentle.BookStore
+      run: dotnet restore
+    - name: Build
+      working-directory: ./Webgentle.BookStore
+      run: dotnet build **/*.csproj --configuration Release
+    - name: Publish
+      working-directory: ./Webgentle.BookStore
+      run: dotnet publish **/*.csproj -c Release -o ./publish
+    - name: Publish Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: MyProject-${{ github.sha }}
+        path: ./Webgentle.BookStore/publish
     environment:
       name: 'production'
     
