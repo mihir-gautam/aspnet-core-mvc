@@ -20,7 +20,7 @@ on:
         - 3
 
 jobs:
-
+  environment: 'production'
   build-and-deploy:
 
     runs-on: ubuntu-latest
